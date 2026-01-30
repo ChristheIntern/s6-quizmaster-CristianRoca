@@ -1,0 +1,14 @@
+{
+    "categories": {
+        "Mathematics": [
+            {
+                "id": 1,
+                "question": "What is 5 x 6",
+                "options": ["11", "30", "56", "60"],
+                "correct": 1,
+                "difficulty": "easy",
+                "points": 10
+            }
+        ]
+    }
+}
