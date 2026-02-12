@@ -9,6 +9,26 @@
                 "difficulty": "easy",
                 "points": 10
             }
+        ],
+        "Science": [
+            {
+                "id": 2,
+                "question": "What planet is known as the Red Planet?",
+                "options": ["Earth", "Mars", "Jupiter", "Venus"],
+                "correct": 1,
+                "difficulty": "easy",
+                "points": 10
+            }
+        ],
+        "History": [
+            {
+                "id": 3,
+                "question": "Who was the first President of the United States?",
+                "options": ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "John Adams"],
+                "correct": 1,
+                "difficulty": "easy",
+                "points": 10
+            }
         ]
     }
 }
