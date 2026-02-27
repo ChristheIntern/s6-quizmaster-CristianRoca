@@ -1,3 +1,25 @@
 {
-    "scores": []
+    "scores": [
+        {
+            "name": "chris",
+            "category": "Mathematics",
+            "score": 0,
+            "total_questions": 1,
+            "correct_answers": 0
+        },
+        {
+            "name": "Player",
+            "category": "Mathematics",
+            "score": 0,
+            "total_questions": 1,
+            "correct_answers": 0
+        },
+        {
+            "name": "Player",
+            "category": "Mathematics",
+            "score": 10,
+            "total_questions": 1,
+            "correct_answers": 1
+        }
+    ]
 }
