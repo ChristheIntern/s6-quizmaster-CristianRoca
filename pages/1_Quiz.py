@@ -2,6 +2,7 @@
 import streamlit as st
 import json
 import os
+import database
 
 st.set_page_config(
     page_title="Quiz",
@@ -13,7 +14,7 @@ st.title("Quiz Page")
 
 # Get the selected category from session state
 selected_category = st.session_state.get("selected_category", None)
-player_name = st.session_state.get("player_name", "Player")
+player_name = st.session_state.get("player_name") or st.session_state.get("name_input", "Player")
 
 if not selected_category:
     st.error("No category selected! Please go back to the home page and select a category.")
@@ -114,24 +115,26 @@ try:
             except (FileNotFoundError, json.JSONDecodeError):
                 highscores = {"scores": []}
             
-            # Add new score
-            highscores["scores"].append({
-                "name": player_name,
-                "category": selected_category,
-                "score": st.session_state.score,
-                "total_questions": len(st.session_state.answers),
-                "correct_answers": correct_answers
-            })
-            
-            # Save highscores
-            with open(highscores_path, "w") as f:
-                json.dump(highscores, f, indent=4)
-            
+            # Add new score: save in DB if logged in, otherwise fallback to file
+            if st.session_state.get("user_id"):
+                database.add_score(st.session_state.get("user_id"), selected_category, st.session_state.score, len(st.session_state.answers), correct_answers)
+            else:
+                highscores["scores"].append({
+                    "name": player_name,
+                    "category": selected_category,
+                    "score": st.session_state.score,
+                    "total_questions": len(st.session_state.answers),
+                    "correct_answers": correct_answers
+                })
+                # Save highscores to file
+                with open(highscores_path, "w") as f:
+                    json.dump(highscores, f, indent=4)
+
             # Reset quiz state
             del st.session_state.current_question
             del st.session_state.score
             del st.session_state.answers
-            
+
             st.switch_page("Home.py")
 
 except FileNotFoundError:
