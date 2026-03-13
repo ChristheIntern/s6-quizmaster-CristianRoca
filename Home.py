@@ -64,10 +64,13 @@ with st.expander("Account"):
             st.session_state["player_name"] = None
             st.experimental_rerun()
 
-# Name input (fallback if not logged in)
-st.text_input("Your name", placeholder="Enter your name here", key="name_input")
-if st.session_state.get("name_input") and not st.session_state.get("player_name"):
-    st.write(f"Hello, {st.session_state['name_input']}! Please select a category.")
+# Name input (only required if not logged in)
+if not st.session_state.get("user_id"):
+    st.text_input("Your name", placeholder="Enter your name here", key="name_input")
+    if st.session_state.get("name_input") and not st.session_state.get("player_name"):
+        st.write(f"Hello, {st.session_state['name_input']}! Please select a category.")
+else:
+    st.write("Please select a category.")
 
 # Category selection
 
@@ -80,10 +83,19 @@ if selected_category:
 # Starting quiz
 
 if st.button("Start Quiz", key="start_quiz_button"):
-    if selected_category and st.session_state.get("name_input"):
+    # Check if user is logged in OR has entered a name
+    has_valid_name = st.session_state.get("user_id") or st.session_state.get("name_input")
+    if selected_category and has_valid_name:
         # Save the selected category to session state
         st.session_state["selected_category"] = selected_category
-        st.session_state["player_name"] = st.session_state["name_input"]
+        # Set player name - use username if logged in, otherwise use entered name
+        if st.session_state.get("user_id"):
+            st.session_state["player_name"] = st.session_state.get("player_name")
+        else:
+            st.session_state["player_name"] = st.session_state["name_input"]
         st.switch_page("pages/1_Quiz.py")
     else:
-        st.warning("Please enter your name and select a category before starting the quiz.")
+        if not st.session_state.get("user_id"):
+            st.warning("Please enter your name and select a category before starting the quiz.")
+        else:
+            st.warning("Please select a category before starting the quiz.")
