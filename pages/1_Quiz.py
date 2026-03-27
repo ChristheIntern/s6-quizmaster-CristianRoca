@@ -15,6 +15,7 @@ st.markdown("---")
 
 # Get the selected category from session state
 selected_category = st.session_state.get("selected_category", None)
+selected_difficulty = st.session_state.get("selected_difficulty", None)
 player_name = st.session_state.get("player_name") or st.session_state.get("name_input", "Player")
 
 if not selected_category:
@@ -23,25 +24,39 @@ if not selected_category:
         st.switch_page("Home.py")
     st.stop()
 
-col1, col2, col3 = st.columns(3)
+if not selected_difficulty:
+    st.error("❌ No difficulty selected! Please select a difficulty level.")
+    if st.button("📂 Go to Categories"):
+        st.switch_page("pages/3_Categories.py")
+    st.stop()
+
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.markdown(f"### 👤 Player: **{player_name}**")
 with col2:
     st.markdown(f"### 📚 Category: **{selected_category}**")
 with col3:
+    difficulty_emoji = "🟢" if selected_difficulty == "easy" else "🟡" if selected_difficulty == "medium" else "🔴"
+    st.markdown(f"### {difficulty_emoji} Difficulty: **{selected_difficulty.capitalize()}**")
+with col4:
     pass
 
 # Load questions from JSON file in data folder
 try:
     questions_path = os.path.join("data", "questions.json")
-    with open(questions_path, "r") as f:
+    with open(questions_path, "r", encoding="utf-8") as f:
         questions_data = json.load(f)
     
     # Get questions for the selected category
-    category_questions = questions_data["categories"].get(selected_category, [])
+    all_category_questions = questions_data["categories"].get(selected_category, [])
+    
+    # Filter questions by selected difficulty
+    category_questions = [q for q in all_category_questions if q['difficulty'] == selected_difficulty]
     
     if not category_questions:
-        st.error(f"No questions found for category: {selected_category}")
+        st.error(f"No {selected_difficulty} questions found for category: {selected_category}")
+        if st.button("📂 Go to Categories"):
+            st.switch_page("pages/3_Categories.py")
         st.stop()
     
     # Initialize quiz state
@@ -156,7 +171,7 @@ try:
             # Load existing highscores
             highscores_path = os.path.join("data", "highscores.json")
             try:
-                with open(highscores_path, "r") as f:
+                with open(highscores_path, "r", encoding="utf-8") as f:
                     content = f.read().strip()
                     highscores = json.loads(content) if content else {"scores": []}
             except (FileNotFoundError, json.JSONDecodeError):
@@ -174,7 +189,7 @@ try:
                     "correct_answers": correct_answers
                 })
                 # Save highscores to file
-                with open(highscores_path, "w") as f:
+                with open(highscores_path, "w", encoding="utf-8") as f:
                     json.dump(highscores, f, indent=4)
 
             # Reset quiz state

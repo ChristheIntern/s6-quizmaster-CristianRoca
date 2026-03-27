@@ -70,10 +70,15 @@ if not st.session_state.get("user_id"):
 
 else:
     # User is logged in
-    col1, col2 = st.columns([4, 1])
+    col1, col2, col3 = st.columns([3, 1, 1])
     with col1:
         st.markdown(f"### 👤 Welcome back, **{st.session_state.get('player_name')}**!")
     with col2:
+        # Check if user is admin
+        if database.is_admin(st.session_state.get("user_id")):
+            if st.button("🛠️ Admin Panel", key="admin_btn"):
+                st.switch_page("pages/4_Admin.py")
+    with col3:
         if st.button("🚪 Logout", key="logout"):
             st.session_state["user_id"] = None
             st.session_state["player_name"] = None
@@ -83,26 +88,5 @@ else:
 st.markdown("---")
 st.markdown("### 🎯 Choose Your Challenge")
 
-categories = ["Mathematics", "Science", "History"]
-selected_category = st.selectbox(
-    "Select a category to explore:",
-    categories,
-    key="category_select",
-    placeholder="📚 Pick a category..."
-)
-
-if selected_category:
-    st.markdown(
-        f"<div style='background-color: #e7f3ff; padding: 15px; border-radius: 10px; text-align: center;'><h4>You've selected: <b>{selected_category}</b> ✨</h4></div>",
-        unsafe_allow_html=True
-    )
-
-# Starting quiz
-st.markdown("---")
-if st.button("🚀 Start Quiz", key="start_quiz_button", use_container_width=True):
-    if selected_category:
-        # Save the selected category to session state
-        st.session_state["selected_category"] = selected_category
-        st.switch_page("pages/1_Quiz.py")
-    else:
-        st.warning("⚠️ Please select a category before starting the quiz.")
+if st.button("📂 Browse Categories & Start Quiz", key="categories_button", use_container_width=True):
+    st.switch_page("pages/3_Categories.py")

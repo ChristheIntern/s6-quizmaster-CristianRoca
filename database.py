@@ -21,10 +21,23 @@ def init_db():
             id INTEGER PRIMARY KEY,
             username TEXT UNIQUE NOT NULL,
             password_hash TEXT NOT NULL,
-            salt TEXT NOT NULL
+            salt TEXT NOT NULL,
+            is_admin INTEGER DEFAULT 0
         )
         """
     )
+    # Create admin account if it doesn't exist
+    try:
+        cur.execute("SELECT COUNT(*) FROM users WHERE username='admin'")
+        if cur.fetchone()[0] == 0:
+            salt = os.urandom(16)
+            password_hash = _hash_password("55555", salt)
+            cur.execute(
+                "INSERT INTO users (username, password_hash, salt, is_admin) VALUES (?, ?, ?, ?)",
+                ("admin", password_hash, binascii.hexlify(salt).decode(), 1),
+            )
+    except:
+        pass
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS questions (
@@ -210,3 +223,49 @@ def clear_scores():
     cur.execute("DELETE FROM scores")
     conn.commit()
     conn.close()
+
+
+def is_admin(user_id: int) -> bool:
+    """Check if a user is an admin"""
+    conn = _get_conn()
+    cur = conn.cursor()
+    cur.execute("SELECT is_admin FROM users WHERE id=?", (user_id,))
+    row = cur.fetchone()
+    conn.close()
+    if not row:
+        return False
+    return bool(row[0])
+
+
+def get_all_users():
+    """Get all user accounts"""
+    conn = _get_conn()
+    cur = conn.cursor()
+    cur.execute("SELECT id, username, is_admin FROM users")
+    rows = cur.fetchall()
+    conn.close()
+    return [
+        {
+            "id": r[0],
+            "username": r[1],
+            "is_admin": bool(r[2]),
+        }
+        for r in rows
+    ]
+
+
+def delete_user(user_id: int) -> bool:
+    """Delete a user account"""
+    conn = _get_conn()
+    cur = conn.cursor()
+    try:
+        # Delete user scores first (foreign key constraint)
+        cur.execute("DELETE FROM scores WHERE user_id=?", (user_id,))
+        # Delete user account
+        cur.execute("DELETE FROM users WHERE id=?", (user_id,))
+        conn.commit()
+        return True
+    except Exception as e:
+        return False
+    finally:
+        conn.close()

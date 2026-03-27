@@ -80,6 +80,166 @@
                 "correct": 1,
                 "difficulty": "easy",
                 "points": 10
+            },
+            {
+                "id": 31,
+                "question": "What is the solution to 3x + 5 = 20?",
+                "options": ["3", "5", "8", "10"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 32,
+                "question": "What is the volume of a cube with side length 4?",
+                "options": ["16", "32", "48", "64"],
+                "correct": 3,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 33,
+                "question": "If a triangle has angles of 60° and 70°, what is the third angle?",
+                "options": ["40°", "50°", "60°", "70°"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 34,
+                "question": "What is the derivative of x³?",
+                "options": ["x²", "3x²", "3x³", "3"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 35,
+                "question": "What is 12% of 500?",
+                "options": ["50", "60", "70", "80"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 36,
+                "question": "What is the circumference of a circle with radius 7?",
+                "options": ["14π", "21π", "28π", "49π"],
+                "correct": 0,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 37,
+                "question": "What is the probability of rolling a 3 on a standard die?",
+                "options": ["1/2", "1/4", "1/6", "1/3"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 38,
+                "question": "What is the sum of the interior angles of a pentagon?",
+                "options": ["360°", "540°", "720°", "900°"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 39,
+                "question": "If 2^x = 32, what is the value of x?",
+                "options": ["4", "5", "6", "7"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 40,
+                "question": "What is the slope of a line passing through (2, 3) and (5, 9)?",
+                "options": ["1", "2", "3", "4"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 41,
+                "question": "What is the median of the set {3, 7, 2, 9, 5}?",
+                "options": ["2", "5", "7", "9"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 42,
+                "question": "Solve for x: 2x² + 5x - 3 = 0",
+                "options": ["x = 0.5 or x = -3", "x = 1 or x = -1.5", "x = 2 or x = -3", "x = 3 or x = -2"],
+                "correct": 0,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 43,
+                "question": "What is the area of a circle with radius 5?",
+                "options": ["15π", "20π", "25π", "30π"],
+                "correct": 2,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 44,
+                "question": "What is the cosine of 60°?",
+                "options": ["0.5", "√3/2", "1", "√2/2"],
+                "correct": 0,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 45,
+                "question": "If log₁₀(x) = 2, what is x?",
+                "options": ["10", "20", "100", "1000"],
+                "correct": 2,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 46,
+                "question": "What is the standard deviation of {1, 3, 5, 7, 9}?",
+                "options": ["√8", "√10", "√12", "√14"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 47,
+                "question": "Solve: ∫(3x² + 2x) dx",
+                "options": ["x³ + x² + C", "x³ + 2x² + C", "x³ + x + C", "3x³ + 2x² + C"],
+                "correct": 0,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 48,
+                "question": "What is the eigenvalue of the matrix [[3, 0], [0, 3]]?",
+                "options": ["1", "2", "3", "4"],
+                "correct": 2,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 49,
+                "question": "What is the limit of (1 + 1/n)^n as n approaches infinity?",
+                "options": ["1", "e", "π", "2"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 50,
+                "question": "What is the solution to the differential equation dy/dx = 2x?",
+                "options": ["x² + C", "2x + C", "x + C", "2x² + C"],
+                "correct": 0,
+                "difficulty": "hard",
+                "points": 30
             }
         ],
         "Science": [
@@ -162,6 +322,166 @@
                 "correct": 2,
                 "difficulty": "easy",
                 "points": 10
+            },
+            {
+                "id": 51,
+                "question": "What is the chemical symbol for lithium?",
+                "options": ["Li", "Lt", "Lm", "Le"],
+                "correct": 0,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 52,
+                "question": "What is the normal human body temperature in Celsius?",
+                "options": ["35.5°C", "36.5°C", "37.5°C", "38.5°C"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 53,
+                "question": "What is the speed of light in vacuum?",
+                "options": ["2×10⁸ m/s", "3×10⁸ m/s", "4×10⁸ m/s", "5×10⁸ m/s"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 54,
+                "question": "What is the process by which plants make their own food?",
+                "options": ["Respiration", "Fermentation", "Photosynthesis", "Decomposition"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 55,
+                "question": "How many chambers does the human heart have?",
+                "options": ["2", "3", "4", "5"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 56,
+                "question": "What is the SI unit of force?",
+                "options": ["Dyne", "Joule", "Newton", "Pascal"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 57,
+                "question": "What type of blood cells fight infections?",
+                "options": ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 58,
+                "question": "What is the pH of pure water at 25°C?",
+                "options": ["5", "6", "7", "8"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 59,
+                "question": "What is the atomic number of carbon?",
+                "options": ["4", "5", "6", "7"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 60,
+                "question": "What is the process of breaking down food for energy called?",
+                "options": ["Anabolism", "Catabolism", "Metabolism", "Digestion"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 61,
+                "question": "What is the Heisenberg Uncertainty Principle about?",
+                "options": ["Electron orbits", "Position and momentum", "Energy and time", "Wave-particle duality"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 62,
+                "question": "What is the enthalpy of formation of H2O(l)?",
+                "options": ["-285.8 kJ/mol", "-186.4 kJ/mol", "-104.6 kJ/mol", "-50.3 kJ/mol"],
+                "correct": 0,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 63,
+                "question": "What is the molecular weight of glucose (C6H12O6)?",
+                "options": ["120 g/mol", "150 g/mol", "180 g/mol", "210 g/mol"],
+                "correct": 2,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 64,
+                "question": "What is the law of conservation of energy?",
+                "options": ["Energy is destroyed", "Energy is created", "Energy cannot be created or destroyed", "Energy always increases"],
+                "correct": 2,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 65,
+                "question": "What is the wavelength of visible light?",
+                "options": ["100-200 nm", "200-400 nm", "400-700 nm", "700-1000 nm"],
+                "correct": 2,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 66,
+                "question": "What is the Avogadro's number?",
+                "options": ["6.02 × 10²²", "6.02 × 10²³", "6.02 × 10²⁴", "6.02 × 10²⁵"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 67,
+                "question": "What is the electron configuration of oxygen?",
+                "options": ["1s² 2s² 2p³", "1s² 2s² 2p⁴", "1s² 2s² 2p⁵", "1s² 2s¹ 2p⁶"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 68,
+                "question": "What is the photoelectric effect?",
+                "options": ["Light absorption", "Electron emission from metals", "Light refraction", "Light diffraction"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 69,
+                "question": "What is the Gibbs free energy equation?",
+                "options": ["G = H - TS", "G = H + TS", "G = E + TS", "G = E - TS"],
+                "correct": 0,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 70,
+                "question": "What is the concept behind chemiosmosis?",
+                "options": ["Chemical diffusion across membranes", "Osmotic pressure", "Proton gradient for ATP synthesis", "Electron transfer chains"],
+                "correct": 2,
+                "difficulty": "hard",
+                "points": 30
             }
         ],
         "History": [
@@ -244,6 +564,166 @@
                 "correct": 2,
                 "difficulty": "easy",
                 "points": 10
+            },
+            {
+                "id": 71,
+                "question": "In what year did the Byzantine Empire fall?",
+                "options": ["1401", "1453", "1500", "1648"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 72,
+                "question": "Who was the first Holy Roman Emperor?",
+                "options": ["Otto I", "Charlemagne", "Frederick Barbarossa", "Charles V"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 73,
+                "question": "What was the primary cause of the French Revolution?",
+                "options": ["Religious conflict", "Economic crisis and inequality", "Foreign invasion", "Plague epidemic"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 74,
+                "question": "Which treaty ended the Thirty Years' War?",
+                "options": ["Treaty of Versailles", "Peace of Westphalia", "Treaty of Utrecht", "Peace of Paris"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 75,
+                "question": "Who was the first emperor of the Roman Empire?",
+                "options": ["Julius Caesar", "Augustus", "Octavian", "Nero"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 76,
+                "question": "In what year did Christopher Columbus reach the Americas?",
+                "options": ["1485", "1492", "1500", "1520"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 77,
+                "question": "What was the main cause of World War I?",
+                "options": ["Economic competition", "Assassination of Archduke Franz Ferdinand", "German expansionism", "British colonialism"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 78,
+                "question": "Which dynasty ruled China for the longest period?",
+                "options": ["Ming Dynasty", "Qing Dynasty", "Zhou Dynasty", "Tang Dynasty"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 79,
+                "question": "What year did the Berlin Wall fall?",
+                "options": ["1987", "1988", "1989", "1990"],
+                "correct": 2,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 80,
+                "question": "Who led the Indian independence movement against British rule?",
+                "options": ["Jawaharlal Nehru", "Mahatma Gandhi", "Subhas Chandra Bose", "Sardar Vallabhbhai Patel"],
+                "correct": 1,
+                "difficulty": "medium",
+                "points": 20
+            },
+            {
+                "id": 81,
+                "question": "What was the primary goal of the Congress of Vienna (1815)?",
+                "options": ["Promote democracy", "Restore balance of power in Europe", "End slavery", "Establish trade agreements"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 82,
+                "question": "Which historian proposed the 'Iron Curtain' concept during the Cold War?",
+                "options": ["George F. Kennan", "Winston Churchill", "Harry Truman", "Dean Acheson"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 83,
+                "question": "What was the primary motivation for the Meiji Restoration in Japan (1868)?",
+                "options": ["Isolate Japan", "Modernize and industrialize Japan", "Expand military aggression", "Return to feudalism"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 84,
+                "question": "Who was the architect of the Hundred Days reform in China?",
+                "options": ["Sun Yat-sen", "Kang Youwei", "Liang Qichao", "Cixi"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 85,
+                "question": "What was the primary effect of the Treaty of Brest-Litovsk (1918)?",
+                "options": ["Ended WWI", "Russia withdrew from WWI", "Created the League of Nations", "Established Soviet territories"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 86,
+                "question": "Which empire controlled the Silk Road during the Tang Dynasty?",
+                "options": ["Mongol Empire", "Turkic Khaganate", "Tang Dynasty of China", "Ottoman Empire"],
+                "correct": 2,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 87,
+                "question": "What was the primary cause of the fall of the Roman Empire?",
+                "options": ["Single invasion", "Multiple factors: economic, military, political", "Volcanic eruption", "Plague alone"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 88,
+                "question": "What was the significance of the Gutenberg Press invention?",
+                "options": ["Invented the telephone", "Enabled mass production of books", "Created first newspaper", "Developed printing press for maps"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 89,
+                "question": "How did the Monroe Doctrine affect U.S. foreign policy?",
+                "options": ["Promoted isolationism", "Warned Europe against interference in Americas", "Established trade with Asia", "Created alliances with European powers"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
+            },
+            {
+                "id": 90,
+                "question": "What was the primary objective of the League of Nations?",
+                "options": ["Promote world domination", "Prevent future wars through collective security", "Expand colonialism", "Establish democracy worldwide"],
+                "correct": 1,
+                "difficulty": "hard",
+                "points": 30
             }
         ]
     }
