@@ -10,20 +10,26 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("Quiz Page")
+st.markdown("# 🎯 Quiz Master Challenge")
+st.markdown("---")
 
 # Get the selected category from session state
 selected_category = st.session_state.get("selected_category", None)
 player_name = st.session_state.get("player_name") or st.session_state.get("name_input", "Player")
 
 if not selected_category:
-    st.error("No category selected! Please go back to the home page and select a category.")
-    if st.button("Go to Home"):
+    st.error("❌ No category selected! Please go back to the home page and select a category.")
+    if st.button("🏠 Go to Home"):
         st.switch_page("Home.py")
     st.stop()
 
-st.write(f"Welcome, **{player_name}**!")
-st.write(f"Category: **{selected_category}**")
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown(f"### 👤 Player: **{player_name}**")
+with col2:
+    st.markdown(f"### 📚 Category: **{selected_category}**")
+with col3:
+    pass
 
 # Load questions from JSON file in data folder
 try:
@@ -52,60 +58,101 @@ try:
     if current_q_index < len(category_questions):
         question = category_questions[current_q_index]
         
-        st.subheader(f"Question {current_q_index + 1} of {len(category_questions)}")
-        st.write(f"**Difficulty:** {question['difficulty'].capitalize()}")
-        st.write(f"**Points:** {question['points']}")
+        # Progress bar and stats
+        progress = current_q_index / len(category_questions)
+        st.progress(progress)
         
-        st.write("---")
-        st.write(f"###{question['question']}")
+        # Header with question number and metadata
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Question", f"{current_q_index + 1}/{len(category_questions)}")
+        with col2:
+            difficulty_emoji = "🟢" if question['difficulty'] == "easy" else "🟡" if question['difficulty'] == "medium" else "🔴"
+            st.metric("Difficulty", f"{difficulty_emoji} {question['difficulty'].capitalize()}")
+        with col3:
+            st.metric("Points", question['points'])
+        with col4:
+            st.metric("Current Score", st.session_state.score)
         
-        # Display options as radio buttons
-        answer = st.radio(
-            "Select your answer:",
-            options=range(len(question["options"])),
-            format_func=lambda x: question["options"][x],
-            key=f"question_{question['id']}"
+        st.markdown("---")
+        
+        # Question display with styling
+        st.markdown(
+            f"<div style='background-color: #f0f4ff; padding: 20px; border-radius: 10px; border-left: 5px solid #0066cc;'><h3>{question['question']}</h3></div>",
+            unsafe_allow_html=True
         )
         
-        col1, col2 = st.columns([1, 5])
+        st.markdown("### 💡 Select your answer:")
+        # Display options as radio buttons
+        answer = st.radio(
+            "Options:",
+            options=range(len(question["options"])),
+            format_func=lambda x: f"{'ABCD'[x]}. {question['options'][x]}",
+            key=f"question_{question['id']}",
+            label_visibility="collapsed"
+        )
         
-        with col1:
-            if st.button("Submit Answer"):
-                # Check if answer is correct
-                is_correct = answer == question["correct"]
-                
-                if is_correct:
-                    st.session_state.score += question["points"]
-                    st.success(f"Correct! +{question['points']} points")
-                else:
-                    st.error(f"Wrong! The correct answer was: {question['options'][question['correct']]}")
-                
-                # Save answer
-                st.session_state.answers.append({
-                    "question_id": question["id"],
-                    "selected": answer,
-                    "correct": question["correct"],
-                    "is_correct": is_correct
-                })
-                
-                # Move to next question
-                st.session_state.current_question += 1
-                st.rerun()
+        st.markdown("---")
         
-        with col2:
-            st.write(f"**Current Score:** {st.session_state.score}")
+        if st.button("✅ Submit Answer", use_container_width=True, key="submit_btn"):
+            # Check if answer is correct
+            is_correct = answer == question["correct"]
+            
+            if is_correct:
+                st.session_state.score += question["points"]
+                st.success(f"🎉 Correct! +{question['points']} points")
+            else:
+                st.error(f"❌ Wrong! The correct answer was: {question['options'][question['correct']]}")
+            
+            # Save answer
+            st.session_state.answers.append({
+                "question_id": question["id"],
+                "selected": answer,
+                "correct": question["correct"],
+                "is_correct": is_correct
+            })
+            
+            # Move to next question
+            st.session_state.current_question += 1
+            st.rerun()
     
     else:
         # Quiz completed
-        st.success("🎉 Quiz Completed!")
-        st.write(f"### Final Score: {st.session_state.score}")
-        st.write(f"**Questions Answered:** {len(st.session_state.answers)}")
+        st.markdown("---")
+        st.markdown(
+            "<div style='text-align: center; padding: 30px;'><h1>🎊 QUIZ COMPLETED! 🎊</h1></div>",
+            unsafe_allow_html=True
+        )
+        st.markdown("---")
         
         correct_answers = sum(1 for ans in st.session_state.answers if ans["is_correct"])
-        st.write(f"**Correct Answers:** {correct_answers}/{len(st.session_state.answers)}")
+        percentage = (correct_answers / len(st.session_state.answers) * 100) if st.session_state.answers else 0
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("📊 Final Score", st.session_state.score)
+        with col2:
+            st.metric("✅ Correct Answers", f"{correct_answers}/{len(st.session_state.answers)}")
+        with col3:
+            st.metric("📈 Accuracy", f"{percentage:.1f}%")
+        
+        st.markdown("---")
+        
+        # Performance message
+        if percentage == 100:
+            st.balloons()
+            st.success("🏆 **PERFECT SCORE!** You're a quiz master!")
+        elif percentage >= 80:
+            st.info("⭐ **EXCELLENT!** Outstanding performance!")
+        elif percentage >= 60:
+            st.info("👍 **GOOD JOB!** Keep practicing!")
+        else:
+            st.warning("📚 **KEEP LEARNING!** Try again to improve!")
+        
+        st.markdown("---")
         
         # Save highscore
-        if st.button("Save Score & Return Home"):
+        if st.button("💾 Save Score & Return Home", use_container_width=True):
             # Load existing highscores
             highscores_path = os.path.join("data", "highscores.json")
             try:

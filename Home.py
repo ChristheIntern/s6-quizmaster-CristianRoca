@@ -11,15 +11,16 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.title("Home")
-st.write(
+st.markdown("# 🎓 QuizMaster")
+st.markdown("---")
+st.markdown(
     """
-    Welcome to the Home page! This is where you can find an overview of the application and its features.
-    
-    Use the sidebar to navigate through different sections of the app. Each section provides specific functionalities and insights.
-    
-    Feel free to explore and make the most out of this application!
-    """
+    <div style='text-align: center; padding: 20px;'>
+    <h3>Welcome to the Ultimate Quiz Experience!</h3>
+    <p>Challenge yourself with engaging quizzes across multiple categories.</p>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 # Name input
@@ -27,75 +28,81 @@ st.write(
 init_db()
 
 # Auth: simple register / login
-with st.expander("Account"):
-    if "user_id" not in st.session_state:
-        st.session_state["user_id"] = None
+if "user_id" not in st.session_state:
+    st.session_state["user_id"] = None
+
+if not st.session_state.get("user_id"):
+    st.markdown("### 🔐 Create Account or Login")
     reg_col, login_col = st.columns(2)
+    
     with reg_col:
-        st.subheader("Register")
-        new_user = st.text_input("New username", key="reg_user")
-        new_pass = st.text_input("New password", type="password", key="reg_pass")
-        if st.button("Register", key="reg_button"):
+        st.markdown("#### 📝 New User?")
+        new_user = st.text_input("Username", key="reg_user", placeholder="Choose a username")
+        new_pass = st.text_input("Password", type="password", key="reg_pass", placeholder="Create a password")
+        if st.button("🚀 Register", key="reg_button", use_container_width=True):
             if new_user and new_pass:
                 ok = create_user(new_user, new_pass)
                 if ok:
-                    st.success("User created. Please login.")
+                    st.success("✅ Account created! Now please login.")
                 else:
-                    st.error("Username already exists.")
+                    st.error("❌ Username already exists.")
+            else:
+                st.warning("⚠️ Please fill in all fields.")
 
     with login_col:
-        st.subheader("Login")
-        login_user = st.text_input("Username", key="login_user")
-        login_pass = st.text_input("Password", type="password", key="login_pass")
-        if st.button("Login", key="login_button"):
+        st.markdown("#### 👋 Existing User?")
+        login_user = st.text_input("Username", key="login_user", placeholder="Enter your username")
+        login_pass = st.text_input("Password", type="password", key="login_pass", placeholder="Enter your password")
+        if st.button("🎯 Login", key="login_button", use_container_width=True):
             if login_user and login_pass:
                 uid = verify_user(login_user, login_pass)
                 if uid:
                     st.session_state["user_id"] = uid
                     st.session_state["player_name"] = login_user
-                    st.success("Logged in.")
+                    st.success("✅ Successfully logged in!")
+                    st.balloons()
+                    st.rerun()
                 else:
-                    st.error("Invalid credentials.")
+                    st.error("❌ Invalid username or password.")
+            else:
+                st.warning("⚠️ Please enter username and password.")
+    st.stop()
 
-    if st.session_state.get("user_id"):
-        st.write(f"Logged in as: {st.session_state.get('player_name')}")
-        if st.button("Logout", key="logout"):
+else:
+    # User is logged in
+    col1, col2 = st.columns([4, 1])
+    with col1:
+        st.markdown(f"### 👤 Welcome back, **{st.session_state.get('player_name')}**!")
+    with col2:
+        if st.button("🚪 Logout", key="logout"):
             st.session_state["user_id"] = None
             st.session_state["player_name"] = None
-            st.experimental_rerun()
-
-# Name input (only required if not logged in)
-if not st.session_state.get("user_id"):
-    st.text_input("Your name", placeholder="Enter your name here", key="name_input")
-    if st.session_state.get("name_input") and not st.session_state.get("player_name"):
-        st.write(f"Hello, {st.session_state['name_input']}! Please select a category.")
-else:
-    st.write("Please select a category.")
+            st.rerun()
 
 # Category selection
+st.markdown("---")
+st.markdown("### 🎯 Choose Your Challenge")
 
-st.write("Select a category to explore:")
 categories = ["Mathematics", "Science", "History"]
-selected_category = st.selectbox("Choose a category", categories, key="category_select")
+selected_category = st.selectbox(
+    "Select a category to explore:",
+    categories,
+    key="category_select",
+    placeholder="📚 Pick a category..."
+)
+
 if selected_category:
-    st.write(f"You have selected: {selected_category}")
+    st.markdown(
+        f"<div style='background-color: #e7f3ff; padding: 15px; border-radius: 10px; text-align: center;'><h4>You've selected: <b>{selected_category}</b> ✨</h4></div>",
+        unsafe_allow_html=True
+    )
 
 # Starting quiz
-
-if st.button("Start Quiz", key="start_quiz_button"):
-    # Check if user is logged in OR has entered a name
-    has_valid_name = st.session_state.get("user_id") or st.session_state.get("name_input")
-    if selected_category and has_valid_name:
+st.markdown("---")
+if st.button("🚀 Start Quiz", key="start_quiz_button", use_container_width=True):
+    if selected_category:
         # Save the selected category to session state
         st.session_state["selected_category"] = selected_category
-        # Set player name - use username if logged in, otherwise use entered name
-        if st.session_state.get("user_id"):
-            st.session_state["player_name"] = st.session_state.get("player_name")
-        else:
-            st.session_state["player_name"] = st.session_state["name_input"]
         st.switch_page("pages/1_Quiz.py")
     else:
-        if not st.session_state.get("user_id"):
-            st.warning("Please enter your name and select a category before starting the quiz.")
-        else:
-            st.warning("Please select a category before starting the quiz.")
+        st.warning("⚠️ Please select a category before starting the quiz.")
